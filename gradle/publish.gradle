@@ -85,18 +85,8 @@ publishing {
         def publication = publishing.publications.findByName(target.name)
 
         if (publication != null) {
-            if (target.platformType.name == 'jvm') {
-                publication.artifact(emptyJar) {
-                    classifier 'javadoc'
-                }
-                publication.artifact dokkaJar
-            } else {
-                publication.artifact(emptyJar) {
-                    classifier 'javadoc'
-                }
-                publication.artifact(emptyJar) {
-                    classifier 'kdoc'
-                }
+            publication.artifact(emptyJar) {
+                classifier 'javadoc'
             }
 
             if (target.platformType.name == 'native') {

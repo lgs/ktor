@@ -270,15 +270,10 @@ afterEvaluate {
     configure(allCompileKotlinTasks) {
         kotlinOptions.freeCompilerArgs += ["-XXLanguage:+InlineClasses"]
     }
+}
 
-//    task dokkaWebsite(type: dokka.getClass()) {
-//        outputFormat = 'kotlin-website'
-//        outputDirectory = "${rootProject.projectDir}/apidoc"
-//
-//        kotlinTasks { allCompileKotlinTasks }
-//
-//        reportUndocumented = false
-//    }
+tasks.dokkaHtmlMultiModule.configure {
+    outputDirectory = rootProject.file("build/api-website")
 }
 
 if (project.hasProperty("enable-coverage")) {

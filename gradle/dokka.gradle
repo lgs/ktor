@@ -4,24 +4,7 @@ tasks.named("dokkaHtml") {
     outputDirectory.set(new File("$buildDir/kdoc"))
 }
 
-//dokka {
-//    outputFormat = 'html'
-//    outputDirectory = "$buildDir/kdoc"
-//
-//    kotlinTasks {
-//        defaultKotlinTasks().findAll { it.name.contains("Jvm") }
-//    }
-//
-//    reportUndocumented = false
-//}
-//
-
-task dokkaJar(type: Jar, dependsOn: 'dokka') {
-    classifier 'kdoc'
-    from fileTree(new File(project.buildDir, 'kdoc'))
+dokkaHtml.configure {
+    dokkaSourceSets.findByName("jsMain")?.suppress?.set(true)
+    dokkaSourceSets.findByName("jsTest")?.suppress?.set(true)
 }
-
-//
-//task dokkaJavadoc {
-//    // do nothing
-//}
